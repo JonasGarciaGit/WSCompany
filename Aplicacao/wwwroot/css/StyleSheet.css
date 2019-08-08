@@ -1,0 +1,61 @@
+﻿#fileira1 {
+    border: 1px solid black;
+    height: 350px;
+}
+
+#fileira2 {
+    border: 1px solid black;
+    height: 350px;
+    margin-top: 20px;
+}
+
+#computador {
+    width: 320px;
+    height: 250px;
+}
+
+.produto {
+    border: 1px solid red;
+    height: 350px;
+    width: 360px;
+    float: left;
+    margin-left: 10px;
+}
+
+.botoes {
+    position: relative;
+    left: 145px;
+    margin-top: 10px;
+}
+
+#carrinho {
+    margin-top: 20px;
+    overflow: auto;
+    width: 482.4px;
+    height: 300px;
+    clear: both;
+    background-color: #ccc;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+.listaProdutos {
+    background-color: azure;
+    text-decoration: none;
+    list-style: none;
+}
+
+.botoesRemover {
+    position: relative;
+    margin-left: 10px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+#btAdicionarPedido {
+    background-color: green;
+    margin-top: 20px;
+}
