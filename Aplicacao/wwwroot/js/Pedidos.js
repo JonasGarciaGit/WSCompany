@@ -35,7 +35,7 @@ function adicionarPedidos() {
     }
 }
 
-setTimeout(function () { adicionarPedidos() }, 100);
+setTimeout(function () { adicionarPedidos() }, 150);
 
 
 function deletarPedido(id) {

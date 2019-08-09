@@ -100,23 +100,26 @@ var dataAgora = new Date(ano, mes, dia);
 $("#btAdicionarPedido").click(function () {
     _Descricao = "Produtos: " + vetDescricao;
     console.log(_Descricao);
-
-    const Pedido = {
-        pedidoDescricao: _Descricao,
-        pedidoTotal: Total,
-        pedidoData: dataAgora,
-        UsuarioId: idDoUsuario
-    }
-
-    $.ajax({
-        url: 'http://localhost:49816/api/Pedidos',
-        type: 'POST',
-        data: JSON.stringify(Pedido),
-        contentType: "application/json; charset = utf-8",
-        traditional: true,
-        success: function (data) {
-            console.log(data);
+    if (idDoUsuario != null) {
+        const Pedido = {
+            pedidoDescricao: _Descricao,
+            pedidoTotal: Total,
+            pedidoData: dataAgora,
+            UsuarioId: idDoUsuario
         }
-    })
 
+        $.ajax({
+            url: 'http://localhost:49816/api/Pedidos',
+            type: 'POST',
+            data: JSON.stringify(Pedido),
+            contentType: "application/json; charset = utf-8",
+            traditional: true,
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    }
+    else 
+        alert("Usuario não existe na base de dados");
+    
 }); 
