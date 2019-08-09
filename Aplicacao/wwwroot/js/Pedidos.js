@@ -20,13 +20,13 @@ $.ajax({
 
 //Traz todos os pedidos
 function adicionarPedidos() {
-    for (var i = 0; i <= size; i++) {
+    for (var i = 1; i <= size; i++) {
         $.ajax({
             url: "http://localhost:49816/api/Pedidos/" + i,
             type: "GET",
             dataType: "json",
             success: function (pedido) {
-                document.getElementById('colunas').innerHTML += "<tr>" + "<td id='usuarioid" + i + "'>" + pedido.Id + "</td>" + "<td id='descricao" + i + "'>" + pedido.pedidoDescricao + "</td>" + "<td id='data" + i + "'>" + pedido.pedidoData + "</td>" + "<td id='total" + i + "'>" + pedido.pedidoTotal + "</td>" + "<td><input type='button' value='Deletar' onclick='deletarPedido(" + pedido.Id + ")'/></td>" + "<td><input type='button' value='Visualizar' onclick='visualizarPedido(" + pedido.Id + ")'/></td>" + "<td><input type='button' value='Atualizar' onclick='atualizarPedido(" + pedido.Id + ")'/></td>" + "</tr>"
+                document.getElementById('colunas').innerHTML += "<tr>" + "<td id='usuarioid" + i + "'>" + pedido.Id + "</td>" + "<td id='descricao" + i + "'>" + pedido.pedidoDescricao + "</td>" + "<td id='data" + i + "'>" + pedido.pedidoData + "</td>" + "<td id='total" + i + "'>" + pedido.pedidoTotal + "</td>" + "<td><input type='button' value='Deletar' class='btn-primary'  onclick='deletarPedido(" + pedido.Id + ")'/></td>" + "<td ><input type='button' value='Visualizar' class='btn-primary'  onclick='visualizarPedido(" + pedido.Id + ")'/></td>" + "<td><input type='button' value='Atualizar' class='btn-primary' onclick='atualizarPedido(" + pedido.Id + ")'/></td>" + "</tr>"
             },
             error: function () {
                 console.log("Erro na requisição");
@@ -36,8 +36,6 @@ function adicionarPedidos() {
 }
 
 setTimeout(function () { adicionarPedidos() }, 100);
-
-
 
 
 function deletarPedido(id) {

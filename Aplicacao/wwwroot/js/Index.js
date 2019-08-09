@@ -1,6 +1,4 @@
-﻿
-
-// Fazendo requisição para pegar todos os produtos
+﻿// Fazendo requisição para pegar todos os produtos
 function listarProdutos() {
     $.ajax({
         url: "http://localhost:49816/api/Produtos",
@@ -21,7 +19,7 @@ var idCarrinho = 0;
 var Preco = [];
 var vetDescricao = [];
 var Total = 0;
-var _Descricao = "";
+var _Descricao;
 
 
 function buscarPeloId(id) {
@@ -31,7 +29,7 @@ function buscarPeloId(id) {
         dataType: "json",
         success: function (produto) {
             var lista = document.getElementById('lista');
-            lista.innerHTML += '<li class="listaProdutos" id =' + idCarrinho + '>' + "Produto: " + produto.Descricao + "     R$ " + produto.Total + "<button class = 'botoesRemover' style='margin-left:10px' onclick = 'removerCarrinho(" + idCarrinho + ");'>Remover</button>" + '</li >';
+            lista.innerHTML += '<li class="listaProdutos" id =' + idCarrinho + '>' + "Produto: " + produto.Descricao + "     R$ " + produto.Total + "<button class = 'botoesRemover btn-primary'onclick = 'removerCarrinho(" + idCarrinho + ");'>Remover</button>" + '</li >';
             Preco[idCarrinho] = produto.Total;
             vetDescricao[idCarrinho] = produto.Descricao;
             Total += Preco[idCarrinho];
@@ -50,6 +48,7 @@ function removerCarrinho(id) {
     Total = Total - Preco[id];
     vetDescricao.splice(id);
     _Descricao = "Produtos: " + vetDescricao;
+    console.log(_Descricao);
 }
 
 
@@ -86,32 +85,28 @@ setInterval(function () {
             }
         });
     }
-}, 10000);
+}, 5000);
 
 
 var email = document.getElementById('email');
 var idDoUsuario;
 var size;
 var data = new Date();
-var dia = data.getDay();
+var dia = data.getDate();
 var mes = data.getMonth();
 var ano = data.getFullYear();
-var hora = data.getHours();
-var min = data.getMinutes();
-var seg = data.getSeconds();
-
-
+var dataAgora = new Date(ano, mes, dia);
 
 $("#btAdicionarPedido").click(function () {
+    _Descricao = "Produtos: " + vetDescricao;
     console.log(_Descricao);
 
-    var Pedido = {
+    const Pedido = {
         pedidoDescricao: _Descricao,
         pedidoTotal: Total,
-        pedidoData: null /*`${ dia }-${ mes }-${ano}T${hora}:${min}:${seg}`*/,
+        pedidoData: dataAgora,
         UsuarioId: idDoUsuario
     }
-
 
     $.ajax({
         url: 'http://localhost:49816/api/Pedidos',
@@ -124,4 +119,4 @@ $("#btAdicionarPedido").click(function () {
         }
     })
 
-});
+}); 
