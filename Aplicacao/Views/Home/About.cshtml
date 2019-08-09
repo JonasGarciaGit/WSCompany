@@ -1,74 +1,8 @@
 ﻿
-<link href="~/css/StyleSheet.css" rel="stylesheet" />
+<link href="~/css/Pedidos.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
+<script type="text/javascript" src="~/js/Pedidos.js" async></script>
 
-    // Busca os pedidos
-    var size;
-
-    //Pega o tamanho de pedidos existentes
-    $.ajax({
-        url: "http://localhost:49816/api/Pedidos",
-        type: "GET",
-        dataType: "json",
-        success: function (data) {
-            size = data.length;
-        },
-        error: function () {
-            console.log("Erro na requisição");
-        }
-    });
-
-    //Traz todos os pedidos
-    function adicionarPedidos() {
-        for (var i = 0; i <= size; i++) {
-            $.ajax({
-                url: "http://localhost:49816/api/Pedidos/" + i,
-                type: "GET",
-                dataType: "json",
-                success: function (pedido) {
-                    document.getElementById('colunas').innerHTML += "<tr>" + "<td id='usuarioid" + i + "'>" + pedido.UsuarioId + "</td>" + "<td id='descricao" + i + "'>" + pedido.pedidoDescricao + "</td>" + "<td id='data" + i + "'>" + pedido.pedidoData + "</td>" + "<td id='total" + i + "'>" + pedido.pedidoTotal + "</td>" + "<td><input type='button' value='Deletar' onclick='deletarPedido(" + pedido.Id + ")'/></td>" + "</tr>"
-                },
-                error: function () {
-                    console.log("Erro na requisição");
-                }
-            })
-        }
-    }
-
-    setTimeout(function () { adicionarPedidos() }, 100);
-
-
-
-
-    function deletarPedido(id) {
-        var confirmacao = confirm("Tem certeza que deseja deletar?");
-        if (confirmacao == true) {
-            $.ajax({
-                url: "http://localhost:49816/api/Pedidos/" + id,
-                type: "DELETE",
-                dataType: "json",
-                success: function (data) {
-                    window.location.href = 'https://localhost:44340/Home/About';
-                },
-                error: function () {
-                    console.log("Erro na requisição");
-                }
-            });
-        }
-    }
-
-        
-
-
-</script>
-
-
-@{
-    ViewData["Title"] = "Pedidos";
-}
-
-<h2>@ViewData["Title"]</h2>
 
 <p>
     <a asp-action="Create" class="btn btn-default">Pesquisar</a>
@@ -78,7 +12,7 @@
     <thead>
         <tr class="success">
             <th>
-                Id
+                Id Pedido
             </th>
             <th>
                 Descricao
@@ -90,13 +24,40 @@
                 Total
             </th>
             <th>
-
             </th>
-            
+            <th>
+            </th>
+            <th>
+            </th>
+
         </tr>
     </thead>
-    <tbody id="colunas">
-
-    </tbody>
-
+    <tbody id="colunas"></tbody>
 </table>
+
+<div id="visualizacao">
+    <div>
+        <label id="idPedido">ID: </label>
+    </div>
+    <div>
+        <label id="descricaoPedido">Descrição: </label>
+    </div>
+    <div>
+        <label id="dataPedido">Data: </label>
+    </div>
+    <div>
+        <label id="totalPedido">Total: </label>
+    </div>
+    <div>
+        <button id="fecharVisualizacao">Fechar</button>
+    </div>
+</div>
+
+<script>
+
+    $("#fecharVisualizacao").click(function () {
+        $("#visualizacao").hide();
+    });
+
+
+</script>

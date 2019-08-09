@@ -1,4 +1,4 @@
-﻿
+﻿console.log(localStorage.getItem('idPedido'));
 
 // Fazendo requisição para pegar todos os produtos
 function listarProdutos() {
@@ -21,7 +21,7 @@ var idCarrinho = 0;
 var Preco = [];
 var vetDescricao = [];
 var Total = 0;
-var _Descricao = "";
+var _Descricao;
 
 
 function buscarPeloId(id) {
@@ -53,75 +53,42 @@ function removerCarrinho(id) {
 }
 
 
+//PUT do pedido
 
-//Post do pedido
-//Pega o numero maximo de usuarios 
-
-$.ajax({
-    url: "http://localhost:49816/api/Usuarios",
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-        size = data.length;
-    },
-    error: function () {
-        console.log("Erro na requisição");
-    }
-});
-
-
-setInterval(function () {
-    for (var i = 0; i < size + 5; i++) {
-        $.ajax({
-            url: "http://localhost:49816/api/Usuarios/" + i,
-            type: "GET",
-            dataType: "json",
-            success: function (data) {
-                if (email.value == data.Nome) {
-                    idDoUsuario = data.Id;
-                }
-            },
-            error: function () {
-                console.log("Erro na requisição");
-            }
-        });
-    }
-}, 10000);
-
-
-var email = document.getElementById('email');
-var idDoUsuario;
-var size;
+var idPedido = localStorage.getItem('idPedido');
 var data = new Date();
 var dia = data.getDay();
 var mes = data.getMonth();
 var ano = data.getFullYear();
-var hora = data.getHours();
-var min = data.getMinutes();
-var seg = data.getSeconds();
-
 
 
 $("#btAdicionarPedido").click(function () {
     console.log(_Descricao);
 
     var Pedido = {
-        pedidoDescricao: _Descricao,
+
+        pedidoData: dia + "/" + mes + "/" + ano,
+        pedidoDescricao: "Teste",
         pedidoTotal: Total,
-        pedidoData: null /*`${ dia }-${ mes }-${ano}T${hora}:${min}:${seg}`*/,
-        UsuarioId: idDoUsuario
+
     }
 
+    console.log(Pedido);
 
+  
     $.ajax({
-        url: 'http://localhost:49816/api/Pedidos',
-        type: 'POST',
+        url: 'http://localhost:49816/api/Pedidos/'+idPedido,
+        type: 'PUT',
         data: JSON.stringify(Pedido),
         contentType: "application/json; charset = utf-8",
         traditional: true,
         success: function (data) {
             console.log(data);
         }
-    })
+    });
+    
+
+
 
 });
+

@@ -1,17 +1,63 @@
-﻿@{
-    ViewData["Title"] = "Contact";
-}
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+﻿
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<html>
+<head>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/AtualizarPedido.js" async></script>
+
+</head>
+
+<body>
+
+    <h2>Atualizar pedido</h2>
+
+    <form method="post" id="pedido">
+        <h4>Selecione seus produtos</h4>
+
+        <div id="fileira1">
+            <div id="produto1" class="produto">
+                <img src="~/images/notebook.png" class="imagens" />
+                <input type="button" value="Adicionar ao carrinho" id="botaoP1" class="botoes" onclick="buscarPeloId(1);" />
+            </div>
+
+            <div id="produto2" class="produto">
+                <img src="~/images/computador.png" id="computador" class="imagens" />
+                <input type="button" value="Adicionar ao carrinho" id="botaoP2" class="botoes" onclick="buscarPeloId(2);" />
+
+            </div> <div id="produto3" class="produto">
+                <img src="~/images/impressora.png" class="imagens" />
+                <input type="button" value="Adicionar ao carrinho" id="botaoP2" class="botoes" onclick="buscarPeloId(3);" />
+            </div>
+        </div>
+
+        <div id="fileira2">
+            <div id="produto4" class="produto">
+                <img src="~/images/mouse.png" class="imagens" />
+                <input type="button" value="Adicionar ao carrinho" id="botaoP2" class="botoes" onclick="buscarPeloId(4);" />
+
+            </div> <div id="produto5" class="produto">
+                <img src="~/images/teclado.png" class="imagens" />
+                <input type="button" value="Adicionar ao carrinho" id="botaoP2" class="botoes" onclick="buscarPeloId(5);" />
+
+            </div> <div id="produto6" class="produto">
+                <img src="~/images/headset.png" class="imagens" />
+                <input type="button" value="Adicionar ao carrinho" id="botaoP2" class="botoes" onclick="buscarPeloId(6);" />
+            </div>
+        </div>
+
+        <div id="carrinho" name="carrinho">
+            <ul id="lista"></ul>
+
+
+        </div>
+
+        <button id="btAdicionarPedido" name="button">Atualizar Pedido</button>
+
+    </form>
+
+</body>
+
+
+</html>

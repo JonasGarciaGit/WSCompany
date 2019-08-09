@@ -59,3 +59,10 @@ ul {
     background-color: green;
     margin-top: 20px;
 }
+
+#visualizacao{
+    background-color: #ddd;
+    z-index: 99;
+    width:200px;
+    height:200px;
+}
